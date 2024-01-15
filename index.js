@@ -1,13 +1,15 @@
-const inquirer = require('inquirer');
-const fs = require('fs');
+import inquirer from 'inquirer';
+import generateShape from './lib/shapes.js';
+import fs from 'fs';
+
 const questions = [{
     type: 'input',
     name: 'characters',
-    message: 'Ente up to three characters'
+    message: 'Enter up to three characters'
   },
   {
     type: 'input',
-    name: 'color',
+    name: 'textColor',
     message: 'enter the color keyword or hexadecimal for the text'
   },
   {
@@ -18,15 +20,15 @@ const questions = [{
   },
   {
     type: 'input',
-    name: 'color',
+    name: 'shapeColor',
     message: 'enter the color keyword or hexadecimal for the shape'
   },
 ];
 
 function writeToFile(data) {
-    let info = generateMarkdown(data);
-    fs.writeFile('logo.svg', info, (err) =>
-      err ? console.error(err) : console.log('ReadMe Generated'))
+  let info = generateShape(data);
+  fs.writeFile('./examples/logo.svg', info, (err) =>
+  err ? console.error(err) : console.log('Logo generated'))
   };
 
   function init() {
