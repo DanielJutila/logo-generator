@@ -1,5 +1,5 @@
 import inquirer from 'inquirer';
-import generateShape from './lib/shapes.js';
+import {Square, Circle, Triangle}  from './lib/shapes.js';
 import fs from 'fs';
 
 const questions = [{
@@ -16,7 +16,7 @@ const questions = [{
     type: 'list',
     name: 'shape',
     message: 'pick a shape for your logo',
-    choices: ['circle', 'trianlge', 'square']
+    choices: ['circle', 'triangle', 'square']
   },
   {
     type: 'input',
@@ -26,9 +26,27 @@ const questions = [{
 ];
 
 function writeToFile(data) {
-  let info = generateShape(data);
+  let logoText = data.characters;
+  let squareObj = '';
+
+  if(data.shape === 'circle'){
+    squareObj = new Square(data.shapeColor);
+  }
+  if(data.shape === 'triangle'){
+    squareObj = new Triangle(data.shapeColor);
+  }
+  if(data.shape === 'square'){
+    squareObj = new Circle(data.shapeColor);
+  }
+
+  let info = `
+  <svg width="300" height="200" version="1.1" xmlns="http://www.w3.org/2000/svg">
+    ${squareObj.shape()}
+    <text x="35" y="35" font-size="14" text-anchor="middle" fill="${data.textColor}">${logoText}</text>
+  </svg>`
+
   fs.writeFile('./examples/logo.svg', info, (err) =>
-  err ? console.error(err) : console.log('Logo generated'))
+  err ? console.error(err) : console.log('Generated logo.svg'))
   };
 
   function init() {
