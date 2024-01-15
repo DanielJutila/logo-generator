@@ -27,22 +27,25 @@ const questions = [{
 
 function writeToFile(data) {
   let logoText = data.characters;
-  let squareObj = '';
+  let shapeObj = '';
 
+  if(data.characters.length > 3){
+    console.log('Please only input 3 characters');
+    return;
+  }
   if(data.shape === 'circle'){
-    squareObj = new Square(data.shapeColor);
+    shapeObj = new Circle(data.shapeColor, data.textColor, data.characters);
   }
   if(data.shape === 'triangle'){
-    squareObj = new Triangle(data.shapeColor);
+    shapeObj = new Triangle(data.shapeColor, data.textColor, data.characters);
   }
   if(data.shape === 'square'){
-    squareObj = new Circle(data.shapeColor);
+    shapeObj = new Square(data.shapeColor, data.textColor, data.characters);
   }
 
   let info = `
   <svg width="300" height="200" version="1.1" xmlns="http://www.w3.org/2000/svg">
-    ${squareObj.shape()}
-    <text x="35" y="35" font-size="14" text-anchor="middle" fill="${data.textColor}">${logoText}</text>
+    ${shapeObj.shape()}
   </svg>`
 
   fs.writeFile('./examples/logo.svg', info, (err) =>
