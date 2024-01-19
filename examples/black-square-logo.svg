@@ -1,0 +1,5 @@
+
+  <svg width="300" height="200" version="1.1" xmlns="http://www.w3.org/2000/svg">
+    <rect x="10" y="10" width="150" height="150" fill="black"/>
+    <text x="85" y="90" font-size="40" text-anchor="middle" fill="green">NYC</text>
+  </svg>

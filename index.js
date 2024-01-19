@@ -48,7 +48,7 @@ function writeToFile(data) {
     ${shapeObj.shape()}
   </svg>`
 
-  fs.writeFile('./examples/logo.svg', info, (err) =>
+  fs.writeFile(`./examples/${data.shapeColor}-${data.shape}-logo.svg`, info, (err) =>
   err ? console.error(err) : console.log('Generated logo.svg'))
   };
 
