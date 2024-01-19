@@ -1,7 +1,8 @@
-import inquirer from 'inquirer';
-import {Square, Circle, Triangle}  from './lib/shapes.js';
-import fs from 'fs';
+const inquirer = require('inquirer');
+const { Square, Circle, Triangle } = require('./lib/shapes.js');
+const fs = require('fs');
 
+//questions about logo
 const questions = [{
     type: 'input',
     name: 'characters',
@@ -25,10 +26,9 @@ const questions = [{
   },
 ];
 
+//generates logo from answers and grabs object from shapes.js
 function writeToFile(data) {
-  let logoText = data.characters;
   let shapeObj = '';
-
   if(data.characters.length > 3){
     console.log('Please only input 3 characters');
     return;
